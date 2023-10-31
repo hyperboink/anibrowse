@@ -1,12 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { rating, slug } from '../../utils/utils';
 import Pagination from '@/components/Pagination';
+import Star from '@/components/Star';
+import { rating, slug } from '../../utils/utils';
 import { PaginationPropsWithOpts, PaginationControl } from '@/types/pagination';
 import { PathParams, Props } from '@/types/common';
 import { SingleEntry } from '@/types/details';
 import { search } from '@/utils/api';
-import Star from '@/components/Star';
+import { INITIAL_SEARCH } from '@/utils/constants';
 
 type PageProps = {
     results: {
@@ -16,7 +17,25 @@ type PageProps = {
     }
 }
 
-export const getServerSideProps = async(context: PathParams) => {
+export const getStaticPaths = async() => {
+    const promise = await search(INITIAL_SEARCH, '1');
+    const response = await promise.json();
+
+    const paths = response?.data?.map((anime: SingleEntry) => {
+        return {
+            params: {
+                slug: [anime.title, '1']
+            }
+        }
+    }) || [];
+
+    return {
+        paths,
+        fallback: 'blocking'
+    }
+}
+
+export const getStaticProps = async(context: PathParams) => {
     const { slug } = context.params;
     const promise = await search(slug[0] || '1', slug[1] || '1');
     const response = await promise.json();

@@ -3,15 +3,33 @@ import { PathParams, Props } from '@/types/common';
 import { SingleEntry } from '@/types/details';
 import Image from 'next/image'
 import Link from 'next/link';
-import { getAnime } from '@/utils/api';
+import { getAnime, getAnimeById } from '@/utils/api';
 
 type PageProps = {
     anime: SingleEntry
 }
 
-export const getServerSideProps = async(context: PathParams) => {
+export const getStaticPaths = async() => {
+    const promise = await getAnime();
+    const response = await promise.json();
+
+    const paths = response?.data?.map((anime: SingleEntry) => {
+        return {
+            params: {
+                id: anime.mal_id.toString()
+            }
+        }
+    }) || [];
+
+    return {
+        paths,
+        fallback: 'blocking'
+    }
+}
+
+export const getStaticProps = async(context: PathParams) => {
     const id = context?.params?.id.toString() || '1';
-    const promise = await getAnime(id);
+    const promise = await getAnimeById(id);
     const response = await promise.json();
 
     if(response.error){

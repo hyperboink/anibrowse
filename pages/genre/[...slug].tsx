@@ -1,12 +1,13 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import Pagination from '@/components/Pagination';
+import Star from '@/components/Star';
 import { rating, slug } from '../../utils/utils';
 import { PaginationPropsWithOpts, PaginationControl } from '@/types/pagination';
 import { PathParams, Props } from '@/types/common';
 import { SingleEntry } from '@/types/details';
 import { getGenre } from '@/utils/api';
-import Star from '@/components/Star';
+import { INITIAL_GENRE } from '@/utils/constants';
 
 type PageProps = {
     anime: {
@@ -16,7 +17,25 @@ type PageProps = {
     }
 }
 
-export const getServerSideProps = async(context: PathParams) => {
+export const getStaticPaths = async() => {
+    const promise = await getGenre('1', '1');
+    const response = await promise.json();
+
+    const paths = response?.data?.map(() => {
+        return {
+            params: {
+                slug: ['action', '1', '1']
+            }
+        }
+    }) || [];
+
+    return {
+        paths,
+        fallback: 'blocking'
+    }
+}
+
+export const getStaticProps = async(context: PathParams) => {
     const { slug } = context.params;
     const promise = await getGenre(slug[1]|| '1', slug[2] || '1');
     const response = await promise.json();

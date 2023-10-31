@@ -33,7 +33,6 @@ export default function Home({
     upcoming,
     topRated
 }: PageProps) {
-    //console.log('weee', seasonNow);
     return (
         <div className="bg-slate-950 p-6 py-12">
             <div className="container max-w-6xl mx-auto py-4">

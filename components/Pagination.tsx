@@ -1,9 +1,8 @@
-import React, { useContext } from 'react'
+import { useContext , useState, useEffect} from 'react'
 import Link from 'next/link';
 import { PageContext } from '@/context/PageContext';
 import { range, debounce, media } from '@/utils/utils';
 import { PAGE_LIMIT, PAGINATION_DEVICE } from '@/utils/constants';
-import { useState, useEffect } from 'react';
 import { Breakpoints, PaginationProps } from '@/types/pagination';
 import { PageContextProps } from '@/types/common';
 
@@ -11,19 +10,18 @@ export default function Pagination({data}: PaginationProps) {
     const [limit, setLimit] = useState(PAGE_LIMIT);
     const { loading }: PageContextProps = useContext(PageContext);
 
-    const paginationResponsive = () => {
-        const { responsiveNav } = data;
-        const responsiveNavLimit: Breakpoints = responsiveNav || {};
-
-        for(let device in PAGINATION_DEVICE){
-            console.log(device === 'desktop');
-            media(`(${device === 'desktop' ? 'min' : 'max'}-width: ${PAGINATION_DEVICE[device].breakpoint}px)`, () => {
-                setLimit(responsiveNavLimit[device] || PAGINATION_DEVICE[device].count);
-            });
+    useEffect(() => {
+        const paginationResponsive = () => {
+            const { responsiveNav } = data;
+            const responsiveNavLimit: Breakpoints = responsiveNav || {};
+    
+            for(let device in PAGINATION_DEVICE){
+                media(`(${device === 'desktop' ? 'min' : 'max'}-width: ${PAGINATION_DEVICE[device].breakpoint}px)`, () => {
+                    setLimit(responsiveNavLimit[device] || PAGINATION_DEVICE[device].count);
+                });
+            }
         }
-    }
 
-    const paginationResize = () => {
         paginationResponsive();
 
         if(typeof window !== "undefined"){
@@ -33,12 +31,7 @@ export default function Pagination({data}: PaginationProps) {
                 window.removeEventListener('resize', debounce(paginationResponsive, 200));
             }
         }
-        
-    }
-
-    useEffect(() => {
-        paginationResize();
-    }, [limit]);
+    }, [limit, data]);
 
     const id = data?.id || '';
     const currentIndex = parseInt(data.pageId);

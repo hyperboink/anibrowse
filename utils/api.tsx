@@ -1,6 +1,8 @@
 import { BASE_API } from "./constants";
 
-export const getAnime = async(id: string) => await fetch(`${BASE_API}/anime/${id}/full`);
+export const getAnime = async() => await fetch(`${BASE_API}/anime`);
+
+export const getAnimeById = async(id: string) => await fetch(`${BASE_API}/anime${id && '/' + id}/full`);
 
 export const getGenre = async(id: string, pageId: string) => await fetch(`${BASE_API}/anime?genres=${id}&page=${pageId}`);
 

@@ -22,7 +22,7 @@ export const getStaticPaths = async() => {
                 id: anime.mal_id.toString()
             }
         }
-    });
+    }) || [];
 
     return {
         paths,

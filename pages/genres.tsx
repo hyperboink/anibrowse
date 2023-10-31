@@ -12,7 +12,7 @@ type PageProps = {
     }
 }
 
-export const getServerSideProps = async() => {
+export const getStaticProps = async() => {
     const promise = await getGenres();
     const response = await promise.json();
 

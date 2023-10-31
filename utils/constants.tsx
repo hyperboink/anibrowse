@@ -28,3 +28,7 @@ export const PAGINATION_DEVICE: PaginationDevice = {
         count: 2
     }
 }
+
+export const INITIAL_SEARCH = 'One Piece';
+
+export const INITIAL_GENRE = '1';
