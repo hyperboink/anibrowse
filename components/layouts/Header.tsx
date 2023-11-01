@@ -25,7 +25,7 @@ export default function Header() {
             </div>
 
             <div className="text-center pt-20 pb-10">
-                <h2 className="font-extrabold text-4xl">Browse Anime</h2>
+                <h2 className="font-extrabold text-4xl">AniBrowse</h2>
 
                 <p className="my-4">Enter anime title here</p>
 
