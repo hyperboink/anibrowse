@@ -50,7 +50,8 @@ export const getStaticProps = async(context: PathParams) => {
     return {
         props: {
             anime: anime,
-        }
+        },
+        revalidate: 10
     }
 }
 

@@ -41,7 +41,8 @@ export const getStaticProps = async(context: PathParams) => {
     return {
         props: {
             anime: response?.data || {}
-        }
+        },
+        revalidate: 10
     }
 }
 

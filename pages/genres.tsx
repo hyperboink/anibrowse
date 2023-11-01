@@ -12,26 +12,6 @@ type PageProps = {
     }
 }
 
-
-
-export const getStaticPaths = async() => {
-    const promise = await getGenres();
-    const response = await promise.json();
-
-    const paths = response?.data?.map((genre: {mal_id: number}) => {
-        return {
-            params: {
-                id: genre.mal_id.toString()
-            }
-        }
-    }) || [];
-
-    return {
-        paths,
-        fallback: 'blocking'
-    }
-}
-
 export const getStaticProps = async() => {
     const promise = await getGenres();
     const response = await promise.json();

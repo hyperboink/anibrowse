@@ -45,7 +45,8 @@ export const getStaticProps = async(context: PathParams) => {
     return {
         props: {
             results
-        }
+        },
+        revalidate: 10
     }
 }
 

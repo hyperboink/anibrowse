@@ -24,7 +24,8 @@ export const getStaticProps = async() => {
           seasonNow: await seasonNowResponse.json(),
           upcoming: await upcomingReponse.json(),
           topRated: await topRatedReponse.json()
-        }
+        },
+        revalidate: 10
     }
 }
 
