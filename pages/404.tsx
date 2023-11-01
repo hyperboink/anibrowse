@@ -5,7 +5,7 @@ export default function ErrorPage() {
   return (
     <div className="error-page bg-slate-950 p-6 py-12 flex flex-col justify-center">
         <div className="error-image-wrap block mx-auto text-center">
-            <Image src="/images/kawaii-angry.png" width={200} height={300} alt="" className="inline-block"/>
+            <Image src="/images/kawaii-angry.png" width={160} height={170} alt="" className="inline-block" unoptimized/>
             <span>404</span>
         </div>
         <div className="error-text text-center pt-4">

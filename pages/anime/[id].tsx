@@ -51,11 +51,15 @@ const Anime = ({anime}: PageProps) => {
         <div className="details bg-slate-950 p-6 py-12 min-h-screen">
             <div className="container max-w-6xl mx-auto py-4">
 
-                <div className="flex">
-                    <div className="w-72">
-                        <Image src={anime.images?.jpg?.large_image_url} width={250} height={405} alt="" className="featured-img w-full border-white rounded border border-violet-900"/>
+                <h3 className="text-3xl font-bold pb-4 title title-border border-gray-700">{anime.title}</h3>
 
-                        <ul className="details-sidebar list-disc p-5 box-border text-sm">
+                <div className="details-container flex">
+                    <div className="details-sidebar w-72 mr-7 mb-7">
+                        <div className="details-img">
+                            <Image src={anime.images?.jpg?.large_image_url} width={250} height={405} alt="" className="featured-img w-full border-white rounded border border-violet-900" unoptimized/>
+                        </div>
+
+                        <ul className="details-info p-5 box-border text-sm">
                             <li>
                                 <span className="font-bold">Title(s): </span>
                                 {anime.titles && filterByType(anime.titles, ['Default', 'Japanese']).map((v: Props) => v.title).join(', ')}
@@ -79,8 +83,9 @@ const Anime = ({anime}: PageProps) => {
                         </ul>
                     </div>
 
-                    <div className="content pl-10 w-3/4">
-                        <h3 className="text-3xl font-bold pb-4 title title-border border-gray-700">{anime.title}</h3>
+                    <div className="details-content content p-9 w-3/4 border border-gray-700">
+                       
+                        <h3 className="text-3xl font-bold pb-4 title border-gray-700">Sypnosis</h3>
 
                         <div className="sypnosis leading-normal">{anime.synopsis}</div>
 

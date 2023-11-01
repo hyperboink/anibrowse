@@ -86,7 +86,7 @@ const Search = ({results}: PageProps) => {
                         <div key={data.mal_id}  className="anime-cards">
                             <Link href={`/anime/${data.mal_id}`}>
                                 <div className="list-image">
-                                    <Image src={data.images?.jpg.image_url} width={200} height={300} alt="" className="list-image w-full rounded-md border-white"/>
+                                    <Image src={data.images?.jpg.image_url} width={200} height={300} alt="" className="list-image w-full rounded-md border-white" unoptimized/>
                                 </div>
 
                                 <div className="title font-bold pt-4 text-2xl">{data.title}</div>
