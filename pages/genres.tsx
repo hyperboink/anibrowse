@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { slug } from "@/utils/utils";
 import { getGenres } from "@/utils/api";
+import { REVALIDATION_TIME } from "@/utils/constants";
 
 type PageProps = {
     results: {
@@ -20,7 +21,7 @@ export const getStaticProps = async() => {
         props: {
             results: response
         },
-        revalidate: 10
+        revalidate: REVALIDATION_TIME
     }
 }
 

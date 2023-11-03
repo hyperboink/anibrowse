@@ -3,6 +3,7 @@ import { PathParams } from '@/types/common';
 import { SingleEntry } from '@/types/details';
 import PaginatedPage from '@/components/PaginatedPage';
 import { getUpcoming } from '@/utils/api';
+import { REVALIDATION_TIME } from '@/utils/constants';
 
 type PageProps = {
     results: {
@@ -45,7 +46,8 @@ export const getStaticProps = async(context: PathParams) => {
     return {
         props: {
             results,
-        }
+        },
+        revalidate: REVALIDATION_TIME
     }
 }
 

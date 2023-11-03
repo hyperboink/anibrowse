@@ -3,6 +3,7 @@ import Image from 'next/image'
 import { SingleEntry, Genres } from '@/types/details';
 import { slug, rating } from '@/utils/utils';
 import { getAnimeByLimit } from '@/utils/api';
+import { REVALIDATION_TIME } from '@/utils/constants';
 
 type DataSingleEntry = {
     data: SingleEntry[]
@@ -25,7 +26,7 @@ export const getStaticProps = async() => {
           upcoming: await upcomingReponse.json(),
           topRated: await topRatedReponse.json()
         },
-        revalidate: 10
+        revalidate: REVALIDATION_TIME
     }
 }
 

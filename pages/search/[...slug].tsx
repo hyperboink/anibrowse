@@ -7,7 +7,7 @@ import { PaginationPropsWithOpts, PaginationControl } from '@/types/pagination';
 import { PathParams, Props } from '@/types/common';
 import { SingleEntry } from '@/types/details';
 import { search } from '@/utils/api';
-import { INITIAL_SEARCH } from '@/utils/constants';
+import { REVALIDATION_TIME, INITIAL_SEARCH } from '@/utils/constants';
 
 type PageProps = {
     results: {
@@ -51,7 +51,7 @@ export const getStaticProps = async(context: PathParams) => {
         props: {
             results
         },
-        revalidate: 10
+        revalidate: REVALIDATION_TIME
     }
 }
 

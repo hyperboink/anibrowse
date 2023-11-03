@@ -4,6 +4,7 @@ import { SingleEntry } from '@/types/details';
 import Image from 'next/image'
 import Link from 'next/link';
 import { getAnime, getAnimeById } from '@/utils/api';
+import { REVALIDATION_TIME } from '@/utils/constants';
 
 type PageProps = {
     anime: SingleEntry
@@ -42,7 +43,7 @@ export const getStaticProps = async(context: PathParams) => {
         props: {
             anime: response?.data || {}
         },
-        revalidate: 10
+        revalidate: REVALIDATION_TIME
     }
 }
 

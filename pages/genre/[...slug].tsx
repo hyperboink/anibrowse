@@ -7,7 +7,7 @@ import { PaginationPropsWithOpts, PaginationControl } from '@/types/pagination';
 import { PathParams, Props } from '@/types/common';
 import { SingleEntry } from '@/types/details';
 import { getGenre } from '@/utils/api';
-import { INITIAL_GENRE } from '@/utils/constants';
+import { REVALIDATION_TIME } from '@/utils/constants';
 
 type PageProps = {
     anime: {
@@ -51,7 +51,7 @@ export const getStaticProps = async(context: PathParams) => {
         props: {
             anime: anime,
         },
-        revalidate: 10
+        revalidate: REVALIDATION_TIME
     }
 }
 
