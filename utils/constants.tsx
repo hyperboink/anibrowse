@@ -4,7 +4,7 @@ export const BASE_API: string = 'https://api.jikan.moe/v4';
 
 export const DAYS_OF_THE_WEEK: string[] = ['sunday', 'monday', 'tuesday', 'wednesday' , 'thursday', 'friday', 'saturday', 'sunday'];
 
-export const REVALIDATION_TIME = 43200;
+export const REVALIDATION_TIME = 600;
 
 export const PAGE_LIMIT: number = 10;
 
